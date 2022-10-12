@@ -1,1 +1,6 @@
-<p>main-page works!</p>
+<label>Post a Comment here: </label>
+<input type="text" [(ngModel)]="texts" />
+<br />
+<button (click)="postANewComment()">Submit Comment</button>
+<br />
+<app-comment-list></app-comment-list>
