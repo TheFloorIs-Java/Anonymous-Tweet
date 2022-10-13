@@ -1,1 +1,17 @@
-<p>{{ comment.texts }}</p>
+<h2>{{ comment.texts }}</h2>
+<button (click)="viewReplies()">view replies</button>
+<div *ngIf="show">
+  <app-reply-list [comments]="comment"></app-reply-list>
+  <input
+    type="text"
+    [(ngModel)]="body"
+    (ngModelChange)="valueChange(body)"
+    maxlength="300"
+  />
+  <span>{{ remainingText }}</span>
+  <br />
+  <br />
+  <button (click)="submitAReply()" class="button-56" role="button">
+    Submit Reply
+  </button>
+</div>

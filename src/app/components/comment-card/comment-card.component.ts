@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Comment } from 'src/app/models/comment';
+import { Comment } from 'src/app/models/Comment';
+import { ReplyServiceService } from 'src/app/services/reply-service.service';
 
 @Component({
   selector: 'app-comment-card',
@@ -8,8 +8,21 @@ import { Comment } from 'src/app/models/comment';
   styleUrls: ['./comment-card.component.css'],
 })
 export class CommentCardComponent implements OnInit {
+  show: boolean = false;
+  remainingText: number = 300;
   @Input()
   comment: Comment = { commentId: 0, texts: '' };
-  constructor(private http: HttpClient) {}
+  @Input()
+  body: string = '';
+  constructor(private rs: ReplyServiceService) {}
   ngOnInit(): void {}
+  submitAReply(): void {
+    this.rs.submitAReply(this.body, this.comment.commentId);
+  }
+  viewReplies(): void {
+    this.show = !this.show;
+  }
+  valueChange(body: String): void {
+    this.remainingText = 300 - body.length;
+  }
 }

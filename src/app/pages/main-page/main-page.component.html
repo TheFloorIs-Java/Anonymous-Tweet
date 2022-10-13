@@ -1,6 +1,14 @@
 <label>Post a Comment here: </label>
-<input type="text" [(ngModel)]="texts" />
+<input
+  type="text"
+  [(ngModel)]="texts"
+  (ngModelChange)="valueChange(texts)"
+  maxlength="350"
+/>
+<span>{{ remainingText }}</span>
 <br />
-<button (click)="postANewComment()">Submit Comment</button>
+<button (click)="postANewComment()" class="button-33" role="button">
+  Submit Comment
+</button>
 <br />
 <app-comment-list></app-comment-list>
