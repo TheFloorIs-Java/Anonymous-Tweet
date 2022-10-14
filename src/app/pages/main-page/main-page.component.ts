@@ -12,13 +12,9 @@ export class MainPageComponent implements OnInit {
   remainingText: number = 350;
   @Input()
   texts: String = '';
-  constructor(private http: HttpClient, private cs: CommentServiceService) {}
+  constructor(private cs: CommentServiceService) {}
   listOfComments: Array<Comment> = [];
-  ngOnInit(): void {
-    this.cs
-      .displayAllComments()
-      .subscribe((data) => (this.listOfComments = data));
-  }
+  ngOnInit(): void {}
   postANewComment(): void {
     this.cs.submitAComment(this.texts);
   }
